@@ -16,7 +16,7 @@ const Signin = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [checkValidEmail, setCheckValidEmail] = useState(false);
 
-  const [Password, setPassword] = useState('');
+  const [password, setPassword] = useState('');
   const [checkValidPassword, setCheckValidPassword] = useState(false);
 
   const handelCheckForm1 = text => {
@@ -60,7 +60,7 @@ const Signin = ({navigation}) => {
             style={styles.input}
             placeholder="Password"
             placeholderTextColor="#000"
-            value={Password}
+            value={password}
           />
         </View>
         {checkValidPassword ? (
@@ -69,7 +69,7 @@ const Signin = ({navigation}) => {
           ''
         )}
 
-        {email === '' || Password === '' || checkValidEmail === true ? (
+        {email === '' || password === '' || checkValidEmail === true ? (
           <TouchableOpacity disabled style={styles.buttonDisable}>
             <Text style={styles.text}>Signin</Text>
           </TouchableOpacity>
