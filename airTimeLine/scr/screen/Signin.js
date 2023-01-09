@@ -16,8 +16,8 @@ const Signin = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [checkValidEmail, setCheckValidEmail] = useState(false);
 
-  const [businessEmail, setBusinessEmail] = useState('');
-  const [checkValidBusinessEmail, setCheckValidBusinessEmail] = useState(false);
+  const [Password, setPassword] = useState('');
+  const [checkValidPassword, setCheckValidPassword] = useState(false);
 
   const handelCheckForm1 = text => {
     setEmail(text);
@@ -28,11 +28,11 @@ const Signin = ({navigation}) => {
     }
   };
   const handelCheckForm2 = text => {
-    setBusinessEmail(text);
+    setPassword(text);
     if (text.trim() != 0) {
-      setCheckValidBusinessEmail(false);
+      setCheckValidPassword(false);
     } else {
-      setCheckValidBusinessEmail(true);
+      setCheckValidPassword(true);
     }
   };
 
@@ -60,16 +60,16 @@ const Signin = ({navigation}) => {
             style={styles.input}
             placeholder="Password"
             placeholderTextColor="#000"
-            value={businessEmail}
+            value={Password}
           />
         </View>
-        {checkValidBusinessEmail ? (
+        {checkValidPassword ? (
           <Text style={styles.textFailed}>*Text should not be empty</Text>
         ) : (
           ''
         )}
 
-        {email === '' || businessEmail === '' || checkValidEmail === true ? (
+        {email === '' || Password === '' || checkValidEmail === true ? (
           <TouchableOpacity disabled style={styles.buttonDisable}>
             <Text style={styles.text}>Signin</Text>
           </TouchableOpacity>
