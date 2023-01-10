@@ -8,11 +8,9 @@ import {
   View,
 } from 'react-native';
 
-// import Buttons from '../components/Buttons';
+import Security from './Security';
 
-// import Screen3 from './Screen3';
-
-const Signin = ({navigation}) => {
+const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [checkValidEmail, setCheckValidEmail] = useState(false);
 
@@ -45,7 +43,7 @@ const Signin = ({navigation}) => {
             onChangeText={text => handelCheckForm1(text)}
             style={styles.input}
             placeholder="Email"
-            placeholderTextColor="#000"
+            placeholderTextColor="#a9a9a9"
             value={email}
           />
         </View>
@@ -59,7 +57,7 @@ const Signin = ({navigation}) => {
             onChangeText={text => handelCheckForm2(text)}
             style={styles.input}
             placeholder="Password"
-            placeholderTextColor="#000"
+            placeholderTextColor="#a9a9a9"
             value={password}
           />
         </View>
@@ -74,7 +72,9 @@ const Signin = ({navigation}) => {
             <Text style={styles.text}>Signin</Text>
           </TouchableOpacity>
         ) : (
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            on_press={() => navigation.navigate(Security)}>
             <Text style={styles.text}>Signin</Text>
           </TouchableOpacity>
         )}
@@ -86,7 +86,7 @@ const Signin = ({navigation}) => {
   );
 };
 
-export default Signin;
+export default Login;
 const styles = StyleSheet.create({
   heading: {
     fontSize: 40,
@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
     marginTop: 35,
     borderWidth: 1,
     borderRadius: 5,
+    borderColor: '#a9a9a9',
   },
   input: {
     position: 'relative',
@@ -131,7 +132,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#EA8B5B',
     borderRadius: 5,
-    marginTop: 25,
+    marginTop: 80,
     width: '80%',
     height: 42,
   },
@@ -140,7 +141,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#EA8B5B',
     borderRadius: 5,
-    marginTop: 25,
+    marginTop: 80,
     width: '80%',
     height: 42,
   },
