@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -7,120 +7,144 @@ import {
   View,
 } from 'react-native';
 
-// importing library to use Stopwatch and Timer
-import {Stopwatch} from 'react-native-stopwatch-timer';
+const Count = ({navigation}) => {
+  const [time, setTime] = useState(0);
+  const [running, setRunning] = useState(false);
+  const [timeSec, setTimeSec] = useState(time);
+  const [runningSec, setRunningSec] = useState(false);
+  const [timeThree, setTimeThree] = useState(timeSec);
+  const [runningThree, setRunningThree] = useState(false);
 
-const Count = () => {
-  const [isStopwatchStart, setIsStopwatchStart] = useState(false);
-  const [isStopwatchStart2, setIsStopwatchStart2] = useState(false);
-  const [isStopwatchStart3, setIsStopwatchStart3] = useState(false);
+  // const milliseconds = time;
+
+  // const seconds = milliseconds / 1000;
+
+  // console.log(seconds, 'first timer'); // 76329.456
+
+  useEffect(() => {
+    let interval;
+    if (running) {
+      interval = setInterval(() => {
+        setTime(prevTime => prevTime + 10);
+      }, 10);
+
+      // console.log(interval, 'iam interval');
+    } else if (!running) {
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [running]);
+
+  // console.log(time, 'iam time');
+  // console.log(timeSec, 'iam timeSec');
+
+  useEffect(() => {
+    let interval;
+    if (runningSec) {
+      interval = setInterval(() => {
+        setTimeSec(prevTime => prevTime + 10);
+      }, 10);
+    } else if (!runningSec) {
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [runningSec]);
+
+  useEffect(() => {
+    let interval;
+    if (runningThree) {
+      interval = setInterval(() => {
+        setTimeThree(prevTime => prevTime + 10);
+      }, 10);
+
+      // console.log(interval, 'iam interval');
+    } else if (!runningThree) {
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [runningThree]);
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* First */}
+
       <View style={styles.sectionStyle}>
-        <Stopwatch
-          laps
-          msecs
-          start={isStopwatchStart}
-          options={options}
-          getTime={time => {
-            console.log(time);
-          }}
-        />
+        <Text style={styles.watch}>
+          {('0' + Math.floor((time / 60000) % 60)).slice(-2)}:
+          {('0' + Math.floor((time / 1000) % 60)).slice(-2)}:
+          {('0' + ((time / 10) % 100)).slice(-2)}
+        </Text>
         <View style={styles.btnContainer}>
-          <TouchableOpacity
-            onPress={() => {
-              setIsStopwatchStart(true);
-            }}>
+          <TouchableOpacity onPress={() => setRunning(true)}>
             <View style={styles.button}>
-              <Text style={styles.buttonText}>
-                {!isStopwatchStart ? 'START' : 'START'}
-              </Text>
+              <Text style={styles.buttonText}>Start</Text>
             </View>
           </TouchableOpacity>
 
           <TouchableOpacity
             onPress={() => {
-              setIsStopwatchStart(false);
+              setTimeSec(time);
+              setRunning(false);
             }}>
             <View style={styles.buttonStop}>
-              <Text style={styles.buttonText}>
-                {isStopwatchStart ? 'STOP' : 'STOP'}
-              </Text>
+              <Text style={styles.buttonText}>Stop</Text>
             </View>
           </TouchableOpacity>
         </View>
       </View>
 
+      {/* secondTimer */}
+
       <View style={styles.sectionStyle}>
-        <Stopwatch
-          laps
-          msecs
-          start={isStopwatchStart2}
-          options={options}
-          getTime={time => {
-            console.log(time);
-          }}
-        />
+        <Text style={styles.watch}>
+          {('0' + Math.floor((timeSec / 60000) % 60)).slice(-2)}:
+          {('0' + Math.floor((timeSec / 1000) % 60)).slice(-2)}:
+          {('0' + ((timeSec / 10) % 100)).slice(-2)}
+        </Text>
         <View style={styles.btnContainer}>
-          <TouchableOpacity
-            onPress={() => {
-              setIsStopwatchStart2(true);
-            }}>
+          <TouchableOpacity onPress={() => setRunningSec(true)}>
             <View style={styles.button}>
-              <Text style={styles.buttonText}>
-                {!isStopwatchStart ? 'START' : 'START'}
-              </Text>
+              <Text style={styles.buttonText}>Start</Text>
             </View>
           </TouchableOpacity>
 
           <TouchableOpacity
             onPress={() => {
-              setIsStopwatchStart2(false);
+              setTimeThree(timeSec);
+              setRunningSec(false);
             }}>
             <View style={styles.buttonStop}>
-              <Text style={styles.buttonText}>
-                {isStopwatchStart2 ? 'STOP' : 'STOP'}
-              </Text>
+              <Text style={styles.buttonText}>Stop</Text>
             </View>
           </TouchableOpacity>
         </View>
       </View>
+
+      {/* ThirdTimer */}
+
       <View style={styles.sectionStyle}>
-        <Stopwatch
-          laps
-          msecs
-          start={isStopwatchStart3}
-          options={options}
-          getTime={time => {
-            console.log(time);
-          }}
-        />
+        <Text style={styles.watch}>
+          {('0' + Math.floor((timeThree / 60000) % 60)).slice(-2)}:
+          {('0' + Math.floor((timeThree / 1000) % 60)).slice(-2)}:
+          {('0' + ((timeThree / 10) % 100)).slice(-2)}
+        </Text>
         <View style={styles.btnContainer}>
-          <TouchableOpacity
-            onPress={() => {
-              setIsStopwatchStart3(true);
-            }}>
+          <TouchableOpacity onPress={() => setRunningThree(true)}>
             <View style={styles.button}>
-              <Text style={styles.buttonText}>
-                {!isStopwatchStart ? 'START' : 'START'}
-              </Text>
+              <Text style={styles.buttonText}>Start</Text>
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            onPress={() => {
-              setIsStopwatchStart3(false);
-            }}>
+          <TouchableOpacity onPress={() => setRunningThree(false)}>
             <View style={styles.buttonStop}>
-              <Text style={styles.buttonText}>
-                {isStopwatchStart ? 'STOP' : 'STOP'}
-              </Text>
+              <Text style={styles.buttonText}>Stop</Text>
             </View>
           </TouchableOpacity>
         </View>
       </View>
-      <TouchableOpacity style={styles.buttonSub}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate(Count)}
+        style={styles.buttonSub}>
         <Text style={styles.text}>Submit</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.buttonBack}>
@@ -135,11 +159,14 @@ export default Count;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // padding: 10,
-    // flexDirection: 'row',
-
     justifyContent: 'center',
     alignItems: 'center',
+  },
+
+  watch: {
+    fontSize: 20,
+    fontWeight: '800',
+    color: '#696969',
   },
   button: {
     width: 120,

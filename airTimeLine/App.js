@@ -3,6 +3,7 @@ import Login from './scr/screen/Login';
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import Security from './scr/screen/Security';
+import Siddhant from './scr/screen/Siddhant';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
@@ -11,19 +12,24 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen
+        <Stack.Screen
           name="Login"
           component={Login}
           options={{headerShown: false}}
-        /> */}
-        {/* <Stack.Screen
+        />
+        <Stack.Screen
           name="Security"
           component={Security}
           options={{headerShown: false}}
-        /> */}
+        />
         <Stack.Screen
           name="Count"
           component={Count}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Siddhant"
+          component={Siddhant}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

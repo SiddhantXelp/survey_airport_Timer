@@ -59,8 +59,8 @@ const Security = ({navigation}) => {
       </View>
       <View style={styles.option}>
         <Dropdown
-          style={[styles.input]}
-          placeholderStyle={styles.placeholderStyle}
+          style={[styles.inputDrop]}
+          placeholderStyle={styles.placeholder}
           selectedTextStyle={styles.selectedTextStyle}
           iconStyle={styles.iconStyle}
           data={weekData}
@@ -79,16 +79,16 @@ const Security = ({navigation}) => {
       </View>
       <View style={styles.option}>
         <Dropdown
-          style={[styles.input]}
-          placeholderStyle={styles.placeholderStyle}
+          style={[styles.inputDrop]}
+          placeholderStyle={styles.placeholder}
           selectedTextStyle={styles.selectedTextStyle}
           iconStyle={styles.iconStyle}
           data={timeData}
           maxHeight={300}
           labelField="label"
-          valueField="time"
-          placeholder={!isFocus ? 'Slot time (Manual)' : ''}
-          value={value}
+          valueField="value"
+          placeholder={!isTime ? 'Slot time (Manual)' : ''}
+          value={time}
           onFocus={() => setIsTime(true)}
           onBlur={() => setIsTime(false)}
           onChange={item => {
@@ -99,16 +99,16 @@ const Security = ({navigation}) => {
       </View>
       <View style={styles.option}>
         <Dropdown
-          style={[styles.input]}
-          placeholderStyle={styles.placeholderStyle}
+          style={[styles.inputDrop]}
+          placeholderStyle={styles.placeholder}
           selectedTextStyle={styles.selectedTextStyle}
           iconStyle={styles.iconStyle}
           data={domData}
           maxHeight={300}
           labelField="label"
-          valueField="dom"
-          placeholder={!isFocus ? 'DOM/Int' : ''}
-          value={value}
+          valueField="value"
+          placeholder={!isDom ? 'DOM/Int' : ''}
+          value={dom}
           onFocus={() => setIsDom(true)}
           onBlur={() => setIsDom(false)}
           onChange={item => {
@@ -118,7 +118,7 @@ const Security = ({navigation}) => {
         />
       </View>
       <TouchableOpacity
-        on_press={() => navigation.navigate(Count)}
+        onPress={() => navigation.navigate(Count)}
         style={styles.button}>
         <Text style={styles.text}>Submit</Text>
       </TouchableOpacity>
@@ -138,9 +138,32 @@ const styles = StyleSheet.create({
     margin: 20,
     backgroundColor: '#fff',
     borderWidth: 1,
-    borderColor: '#a9a9a9',
+    borderColor: '#000',
+    borderRadius: 5,
+    fontSize: 16,
+    paddingLeft: 10,
+  },
+
+  inputDrop: {
+    height: 50,
+    width: 300,
+    margin: 20,
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: '#000',
     borderRadius: 5,
   },
+  placeholder: {
+    fontSize: 16,
+    paddingLeft: 10,
+    color: '#a9a9a9',
+  },
+  selectedTextStyle: {
+    color: '#000',
+    paddingLeft: 10,
+    fontWeight: '500',
+  },
+  iconStyle: {},
 
   button: {
     padding: 10,

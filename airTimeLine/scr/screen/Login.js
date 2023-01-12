@@ -69,13 +69,13 @@ const Login = ({navigation}) => {
 
         {email === '' || password === '' || checkValidEmail === true ? (
           <TouchableOpacity disabled style={styles.buttonDisable}>
-            <Text style={styles.text}>Signin</Text>
+            <Text style={styles.text}>Sign in</Text>
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
             style={styles.button}
-            on_press={() => navigation.navigate(Security)}>
-            <Text style={styles.text}>Signin</Text>
+            onPress={() => navigation.navigate(Security)}>
+            <Text style={styles.text}>Sign in</Text>
           </TouchableOpacity>
         )}
         <TouchableOpacity style={styles.buttonBack}>
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     marginTop: 35,
     borderWidth: 1,
     borderRadius: 5,
-    borderColor: '#a9a9a9',
+    borderColor: '#000',
   },
   input: {
     position: 'relative',
